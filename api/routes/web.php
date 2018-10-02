@@ -11,16 +11,6 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return $app->version();
+$router->get('/', function () use ($router) {
+    return $router->app->version();
 });
-
-$app->post('/auth/login', 'AuthController@loginPost');
-
-$app->get('/posts', 'PostController@index');
-$app->post('/posts', 'PostController@create');
-$app->put('/posts/{postId}', 'PostController@update');
-
-$app->post('/users', 'UserController@create');
-$app->get('/users', 'UserController@index');
-
