@@ -28,7 +28,6 @@ class CreateEmployeesAddressDetailsTable extends Migration
             $table->string('mobile',20);
             $table->string('email',20);
             $table->timestamps();
-            $table->primary('id');
             $table->foreign('employee_id')->references('employee_id')->on('employees')->onDelete('cascade');
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';

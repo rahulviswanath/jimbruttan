@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmployeesBankDetailsTable extends Migration
+class CreateEmployeesFamilyDetails extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class CreateEmployeesBankDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('employees_bank_details', function (Blueprint $table) {
+        Schema::create('employees_family_details', function (Blueprint $table) {
             $table->increments('id');
             $table->string('employee_id');
-            $table->string('bank_name',200);
-            $table->string('branch_name',300);
-            $table->string('account_no',50);
-            $table->string('ifsc_code',50);
-            $table->enum('account_type',['SAVINGS','FIXED','CURRENT']);
-            $table->string('name_as_bank',200);
+            $table->string('name',250);
+            $table->date('dob');
+            $table->enum('gender', ['MALE', 'FEMALE', 'OTHERS']);
+            $table->string('relation',50);
+            $table->text('remarks');
             $table->timestamps();
-            $table->primary('id');
             $table->foreign('employee_id')->references('employee_id')->on('employees')->onDelete('cascade');
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
@@ -38,6 +36,6 @@ class CreateEmployeesBankDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employees_bank_details');
+        Schema::dropIfExists('employees_family_details');
     }
 }

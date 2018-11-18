@@ -25,7 +25,7 @@ class CreateEmployeesTable extends Migration
             $table->string('email',100);
             $table->text('remarks');
             $table->timestamps();
-            $table->primary('employee_id');
+            $table->unique('employee_id');
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';

@@ -28,7 +28,6 @@ class CreateEmployeesOfficialDetailsTable extends Migration
             $table->enum('attendance_status',['CONFIRMED','CONTRACT','PROBATION','TRAINEE']);
             $table->string('reporting_manager')->references('employee_id')->on('employees');
             $table->timestamps();
-            $table->primary('id');
             $table->foreign('employee_id')->references('employee_id')->on('employees')->onDelete('cascade');
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';

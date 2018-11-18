@@ -27,7 +27,6 @@ class CreateEmployeesPassportDetails extends Migration
             $table->date('issued_date');
             $table->date('valid_till');
             $table->timestamps();
-            $table->primary('id');
             $table->foreign('employee_id')->references('employee_id')->on('employees')->onDelete('cascade');
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';

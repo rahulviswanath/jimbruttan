@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmployeesIdentityTable extends Migration
+class CreateEmployeesBankDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateEmployeesIdentityTable extends Migration
      */
     public function up()
     {
-        Schema::create('employees_identity', function (Blueprint $table) {
+        Schema::create('employees_bank_details', function (Blueprint $table) {
             $table->increments('id');
             $table->string('employee_id');
-            $table->unsignedTinyInteger('id_type')->comment('1-AADHAAR, 2-Driving license', '3-Election card', '4-Passport');
-            $table->string('number',50);
-            $table->string('name',50);
-            $table->date('expire_date');
-            $table->unsignedTinyInteger('is_verified')->default(0);
+            $table->string('bank_name',200);
+            $table->string('branch_name',300);
+            $table->string('account_no',50);
+            $table->string('ifsc_code',50);
+            $table->enum('account_type',['SAVINGS','FIXED','CURRENT']);
+            $table->string('name_as_bank',200);
             $table->timestamps();
-            $table->primary('id');
             $table->foreign('employee_id')->references('employee_id')->on('employees')->onDelete('cascade');
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
@@ -37,6 +37,6 @@ class CreateEmployeesIdentityTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employees_identity');
+        Schema::dropIfExists('employees_bank_details');
     }
 }

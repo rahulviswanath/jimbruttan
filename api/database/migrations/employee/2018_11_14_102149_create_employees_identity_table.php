@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmployeesSalaryDetails extends Migration
+class CreateEmployeesIdentityTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateEmployeesSalaryDetails extends Migration
      */
     public function up()
     {
-        Schema::create('employees_salary_details', function (Blueprint $table) {
+        Schema::create('employees_identity', function (Blueprint $table) {
             $table->increments('id');
             $table->string('employee_id');
-            $table->enum('payment_type',['CASH','BANK_TRANSFER','CHEQUE','DD']);
+            $table->unsignedTinyInteger('id_type')->comment('1-AADHAAR, 2-Driving license', '3-Election card', '4-Passport');
+            $table->string('number',50);
+            $table->string('name',50);
+            $table->date('expire_date');
+            $table->unsignedTinyInteger('is_verified')->default(0);
             $table->timestamps();
-            $table->primary('id');
             $table->foreign('employee_id')->references('employee_id')->on('employees')->onDelete('cascade');
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
@@ -33,6 +36,6 @@ class CreateEmployeesSalaryDetails extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employees_salary_details');
+        Schema::dropIfExists('employees_identity');
     }
 }

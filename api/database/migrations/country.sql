@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS `master_countries` (
   `currency_symbol` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `currency_code` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `iso_2` (`iso_2`)
+  UNIQUE KEY `iso_code_2` (`iso_code_2`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 --

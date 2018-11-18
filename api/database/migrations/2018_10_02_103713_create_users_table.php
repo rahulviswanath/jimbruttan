@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email',75)->nullable($value = true);
             $table->unsignedTinyInteger('is_superuser')->default(0);
             $table->timestamps();
-            $table->primary('user_id');
+            $table->unique('user_id');
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
