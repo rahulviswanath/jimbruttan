@@ -19,7 +19,7 @@ class CreateEmployeesAddressDetailsTable extends Migration
             $table->string('name',100);
             $table->text('address');
             $table->string('city',150);
-            $table->integer('state')->references('id')->on('master_provinces');
+            $table->string('state',150);
             $table->smallInteger('country')->references('id')->on('master_countries');
             $table->integer('zip_code');
             $table->string('phone_1',20);
