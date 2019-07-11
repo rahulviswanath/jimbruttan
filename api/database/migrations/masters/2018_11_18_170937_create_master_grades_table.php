@@ -15,7 +15,11 @@ class CreateMasterGradesTable extends Migration
     {
         Schema::create('master_grades', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',100);
+            $table->string('grade_id');
+            $table->string('company_id')->nullable($value = true);
+            $table->string('name',500);
+            $table->unique('grade_id');
+            $table->foreign('company_id')->references('company_id')->on('company')->onDelete('cascade');
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';

@@ -16,6 +16,7 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->increments('id');
             $table->string('employee_id');
+            $table->string('company_id');
             $table->string('number');
             $table->string('title');
             $table->string('name',250);
@@ -26,6 +27,7 @@ class CreateEmployeesTable extends Migration
             $table->text('remarks');
             $table->timestamps();
             $table->unique('employee_id');
+            $table->foreign('company_id')->references('company_id')->on('company')->onDelete('cascade');
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
